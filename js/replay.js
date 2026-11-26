@@ -300,7 +300,7 @@
       }
       if (ended) {
         const ln = el("div", "ln ver now", null, lines);
-        el("span", "m", Math.round(end) + "′", ln); el("span", "k", null, ln);
+        el("span", "m", Math.floor(end) + "′", ln); el("span", "k", null, ln);
         el("span", "x", "The agent ends its session: model.pdb is submitted.", ln);
       }
       if (n === 0) {

@@ -49,7 +49,7 @@
     <div class="tiles">
       <div class="tile"><div class="value">56.9</div><div class="label"><span class="key" style="background:var(--claude)"></span>best open-book GDT_TS<br>Claude Fable 5.2</div></div>
       <div class="tile"><div class="value">24.1</div><div class="label"><span class="key" style="background:var(--claude)"></span>best closed-book GDT_TS<br>Claude Fable 5.2</div></div>
-      <div class="tile"><div class="value">85.4</div><div class="label"><span class="key" style="background:var(--ink)"></span>AlphaFold 3 at CASP16<br>on the same evaluation units</div></div>
+      <div class="tile"><div class="value">85.4</div><div class="label"><span class="key" style="background:var(--ink)"></span>AlphaFold 3 at CASP16<br>on 73 of the 75 evaluation units</div></div>
       <div class="tile"><div class="value">12 × 53</div><div class="label">agents × CASP16 targets<br>75 evaluation units · 3 hours per target</div></div>
     </div>
 
@@ -86,7 +86,8 @@
     </div>
     <p class="note">Mean ± standard deviation across completed runs; in the table, the superscript is the number of runs. Rows are ordered by
       open-book GDT_TS. Average: the mean of the closed-book and the open-book GDT_TS. All agents use the geometry + physics evaluator.
-      AlphaFold 3, Yang-Server and ColabFold are neural-network predictors of CASP16, scored on the same units.</p>
+      AlphaFold 3, Yang-Server and ColabFold are neural-network predictors of CASP16, with their published scores on the units they
+      submitted (AlphaFold 3: 73 of 75; ColabFold: 60).</p>
     <p class="note">† Gemini 4 Hydrogen frequently returned empty responses, possibly because of the agent harness. Its scores may therefore
       underestimate its ability to predict protein structures.</p>
   </div>
@@ -196,8 +197,8 @@
       </div>
       <figure>
         <img src="media/renderer_T1274.png" alt="The renderer's picture of a model: the chain from the front, the top and the side, and its contact map" loading="lazy">
-        <figcaption>What the agent sees: a picture the renderer drew during the replayed T1274 session (the file the session saved as
-          <span class="mono">work/runs/final.png</span>). Blue is the first residue, red the last; helices are drawn thick, strands medium.</figcaption>
+        <figcaption>What the agent sees: a picture the renderer drew, and the agent opened, at minute 104 of the replayed T1274 session
+          (one domain of a candidate model; the file the session saved as <span class="mono">work/runs/m9_dom.png</span>). Blue is the first residue, red the last; helices are drawn thick, strands medium.</figcaption>
       </figure>
     </div>
 
@@ -236,7 +237,7 @@
       </div>
       <div class="text">
         <p>The gap between AlphaFold 3 and the agents widens as template similarity decreases. AlphaFold 3 stays between 84.5 and
-          88.5 across the four types. The agents' median falls from 81.4 on targets with a close template to
+          88.5 across the four types. The median of the 10 agents shown falls from 81.4 on targets with a close template to
           65.0, 55.0 and 32.0: where the search finds no match, the agents reach
           37% of AlphaFold 3's score.</p>
       </div>
@@ -274,8 +275,8 @@
       <p class="note" id="fb-note">Mean GDT_TS ± standard deviation across runs; superscript: number of runs. Difference: against geometry + physics.</p>
       <div class="text" style="margin-top:8px">
         <p>Why does the kind of feedback matter so little? For every signal an evaluator reports, we ask how often it prefers the better of
-          two models. Between two attempts by the same agent in the same setting, the 8 signals pick the model with the higher
-          GDT_TS in 46% to 63% of pairs, where 50% is chance.</p>
+          two models. Between two attempts by the same agent in the same setting whose scores differ by at least five GDT_TS points, the 8 signals pick
+          the model with the higher GDT_TS in 46% to 63% of pairs, where 50% is chance.</p>
       </div>
       <div class="card">
         <div class="chart" id="sig-chart"></div>
