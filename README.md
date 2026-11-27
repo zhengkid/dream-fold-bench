@@ -48,7 +48,7 @@ If you use Dream-Folding-Bench, please cite this repository:
 @misc{dreamfoldingbench2026,
   title        = {Dream-Folding-Bench: Can Coding Agents Fold Proteins on Their Own?},
   year         = {2026},
-  howpublished = {\url{https://github.com/zhengkid/dream-fold-bench}},
+  howpublished = {\url{https://github.com/zhengkid/dream-folding-bench}},
   note         = {GitHub repository}
 }
 ```
