@@ -26,46 +26,36 @@
   let redraw = C.leaderboard($("lb-chart"), lb);
   const legend = function () {
     const extra = [];
-    if (lb.setting === "open") extra.push(["ring", "#000000", "the same model, closed-book (a)"]);
-    if (lb.setting !== "average") { extra.push(["dash", "#000000", "AlphaFold 3 at CASP16 (a)"]); extra.push(["line", "#000000", "± 1 standard deviation over runs (a)"]); }
+    if (lb.setting === "open") extra.push(["ring", "#2D2A23", "the same model, closed-book"]);
+    if (lb.setting !== "average") { extra.push(["dash", "#2D2A23", "AlphaFold 3 at CASP16"]); extra.push(["line", "#2D2A23", "± 1 standard deviation over runs"]); }
     C.harnessLegend($("lb-legend"), extra);
   };
   legend();
   segmented("lb-setting", function (v) { lb.setting = v; redraw(); legend(); });
   segmented("lb-metric", function (v) { lb.metric = v; redraw(); });
-  C.mainTable($("lb-table"));
+  toggle("lb-toggle", "lb-table", C.mainTable);
 
-  /* ---- CASP12: beside the methods of 2016 */
-  if (D.casp12) {
-    const c12 = { cls: "all" };
-    const again = C.casp12Bars($("c12-chart"), c12);
-    segmented("c12-class", function (v) { c12.cls = v; again(); });
-    toggle("c12-toggle", "c12-table", C.casp12Table);
-    C.legendItem($("c12-legend"), "", C.COLOUR["Claude Code"], "Claude Fable 5.2 (agent)");
-    if (D.casp12.experiments.some(function (e) { return e.model === "neon"; })) C.legendItem($("c12-legend"), "", C.COLOUR["Gemini CLI"], "Gemini 4 Neon (agent)");
-    C.legendItem($("c12-legend"), "", C.NEUTRAL, "automated servers of CASP12");
-    C.legendItem($("c12-legend"), "", C.HUMAN, "human expert groups of CASP12");
-    const c12h = 8 + (D.casp12.experiments.length + 6) * 24 + 36;   // as high as the bars above
-    C.casp12Time($("c12-time"), c12h);
-    C.casp12Time($("c12-time-both"), c12h, { key: "over_time_both", max: 60,
-      levels: [{ name: D.casp12.humans[0].name, value: D.casp12.humans[0].both, colour: C.HUMAN }] });
-    C.casp12Humans($("c12-humans"));
-  } else {
-    $("casp12").classList.add("hidden");
-  }
+  /* ---- by template */
+  C.templateChart($("tpl-chart"));
+  C.harnessLegend($("tpl-legend"), [["line", "#2D2A23", "AlphaFold 3 at CASP16"], ["line", "#6B655A", "median of the agents"]]);
+  toggle("tpl-toggle", "tpl-table", C.templateTable);
 
-  /* ---- CASP16: one figure of three panels (by template, over time, the feedback signals) and its key */
-  C.templateChart($("tpl-chart"), 32 + D.models.length * 24 + 44);          // as high as the leaderboard panel beside it
+  /* ---- over time */
+  C.timeChart($("time-closed"), "closed");
+  C.timeChart($("time-open"), "open");
+  C.harnessLegend($("time-legend"), [["dash", "#6B655A", "the earlier model of a pair"]]);
+  toggle("time-toggle", "time-table", C.timeTable);
+
+  /* ---- feedback */
   C.feedbackTable($("fb-table"));
   if (D.feedback.some(function (r) { return r.open.none; }))
-    $("fb-note").textContent += " No evaluator: a control in which the session has the renderer but no evaluator.";
+    $("fb-note").textContent += " No evaluator: a control in which the session has the renderer but no evaluator (open-book).";
   C.signalsChart($("sig-chart"));
   (function () {
-    const h = $("c16-legend");
-    C.legendItem(h, "line", "#000000", "AlphaFold 3 at CASP16 (b)");
-    C.legendItem(h, "line", "#6B7385", "median of the agents (b)");
-    C.legendItem(h, "dot", "#000000", "two attempts of the same agent, same setting (c)");
-    C.legendItem(h, "ring", "#6B7385", "any two models of one target (c)");
+    const h = $("sig-legend");
+    C.legendItem(h, "dot", "#2D2A23", "two attempts of the same agent, same setting");
+    C.legendItem(h, "ring", "#6B655A", "any two models of one target");
+    C.legendItem(h, "dash", "#2D2A23", "chance (50%)");
   })();
 
   /* ---- what the sessions do; every target */
@@ -125,17 +115,4 @@
       entries.forEach(function (e) { if (e.isIntersecting && !started) { started = true; current.play(); } });
     }, { threshold: 0.5 }).observe($("demo-replay"));
   }
-
-  /* a link to something inside a folded block opens the block first */
-  function openFor(hash) {
-    if (!hash || hash.length < 2) return;
-    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
-    if (!target) return;
-    let d = target.tagName === "DETAILS" ? target : target.closest("details");
-    let opened = false;
-    while (d) { if (!d.open) { d.open = true; opened = true; } d = d.parentElement ? d.parentElement.closest("details") : null; }
-    if (opened) target.scrollIntoView();
-  }
-  window.addEventListener("hashchange", function () { openFor(location.hash); });
-  openFor(location.hash);
 })();
