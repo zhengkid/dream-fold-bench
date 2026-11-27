@@ -105,6 +105,7 @@
         <button data-v="T1274" aria-pressed="true">T1274 · no template</button><button data-v="T1278" aria-pressed="false">T1278 · remote template</button></span>
     </div>
     <div id="demo-replay"></div>
+    <div class="used" id="demo-used"></div>
     <p class="note">The grey trace is the experimental structure of the assessed part of the chain. The ribbon is coloured by how far each residue is from its
       experimental position after a superposition of the kind GDT_TS uses. The passage from one version to the next is interpolated for display.</p>
     <div class="grid2" style="margin-top:22px">
@@ -159,6 +160,31 @@
         <p style="margin:8px 0 0">The agent has the sequence, its own knowledge of proteins, and what it can compute.</p></div>
       <div class="setting"><h4>Open-book</h4><div class="tag">PDB + UniRef30, BFD, MGnify · HH-suite, MMseqs2, HMMER</div>
         <p style="margin:8px 0 0">The agent can search the Protein Data Bank, restricted to entries released before the target's release date, and three sequence databases.</p></div>
+    </div>
+
+    <div class="toolbox">
+      <h3>What the agent can use, and what it cannot</h3>
+      <p>The agent is given general-purpose software, not folding software. No program in a session predicts or models a protein
+        structure: whatever does, the agent writes during the session.</p>
+      <div class="twocol">
+        <div class="have"><h4>Available to the agent</h4><ul>
+          <li><b>A terminal and Python</b> with NumPy, SciPy, Numba and Matplotlib</li>
+          <li><b>Search tools</b> (open-book only): HH-suite, MMseqs2 and HMMER over the pre-release PDB, UniRef30, BFD and MGnify</li>
+          <li><b>A renderer</b>: pictures of a candidate structure, as 3D visual feedback</li>
+          <li><b>An evaluator</b>: stereochemical checks and a force-field energy (OpenMM, which the agent may also import)</li>
+        </ul></div>
+        <div class="havenot"><h4>Not available</h4><ul>
+          <li><b>No structure predictor</b>: no AlphaFold, RoseTTAFold or ESMFold, no protein language model, and no neural-network library</li>
+          <li><b>No modelling suite</b>: no Rosetta, MODELLER or I-TASSER</li>
+          <li><b>No structural-biology toolkit</b>: no Biopython, no DSSP; agents write their own file parsers and geometry code</li>
+          <li><b>No internet</b></li>
+        </ul></div>
+      </div>
+      <p style="margin-top:14px">What an agent needs beyond this, it programs itself: model building from alignments, coevolution analysis, folding by
+        annealing, side-chain packing. An open-book session leaves a median of 5 to 101 Python files of
+        its own (664 to 4,835 lines), depending on the agent.</p>
+      <p class="note">In the ablation runs with the Rosetta evaluator, the PyRosetta library is present and the agent may import it; the main
+        results have none.</p>
     </div>
 
     <div class="grid3">

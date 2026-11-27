@@ -75,10 +75,33 @@
     else { const r = document.createRange(); r.selectNodeContents($("cite-text")); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
   });
 
+  /* ---- what the replayed session used: the programs the benchmark provides, and the programs the agent wrote itself */
+  function used(data) {
+    const host = $("demo-used"), make = function (tag, cls, text, parent) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; parent.appendChild(e); return e; };
+    host.textContent = "";
+    make("h4", null, "What the agent used in this session", host);
+    const row = make("div", "row", null, host);
+    make("span", "lab", "Provided by the benchmark:", row);
+    [["hhsuite", "HH-suite"], ["mmseqs", "MMseqs2"], ["hmmer", "HMMER"], ["viewer", "Renderer"], ["evaluator", "Evaluator"]].forEach(function (k) {
+      const n = data.calls[k[0]], chip = make("span", "chip" + (n ? "" : " zero"), null, row);
+      make("b", null, k[1], chip); chip.appendChild(document.createTextNode(n ? " · " + n + (n === 1 ? " call" : " calls") : " · not used"));
+    });
+    const lines = data.programs.reduce(function (a, p) { return a + p.lines; }, 0);
+    const p = make("p", null, null, host);
+    make("b", null, "Written by the agent itself: " + data.programs.length + " Python programs, " + lines.toLocaleString("en-US") + " lines.", p);
+    p.appendChild(document.createTextNode(" No structure-prediction or modelling software is installed in the session; these programs are the agent's method."));
+    const det = make("details", null, null, host);
+    make("summary", null, "The " + data.programs.length + " programs the session left in its workspace", det);
+    const list = make("div", "row", null, det);
+    list.style.marginTop = "10px";
+    data.programs.forEach(function (q) { const chip = make("span", "chip own", null, list); chip.textContent = q.name.replace(/^work\//, "") + " · " + q.lines; chip.title = q.name + ": " + q.lines + " lines"; });
+  }
+
   /* ---- the replay */
   let current = null;
   function show(target) {
     if (current) current.pause();
+    used(window.DFB_REPLAY[target]);
     current = window.DFBReplayView($("demo-replay"), window.DFB_REPLAY[target], {});
     const pre = $("demo-report").querySelector("pre");
     pre.textContent = window.DFB_REPLAY[target].final_report || "";
