@@ -6,16 +6,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- kept out of search engines until the paper is released: remove this line then -->
-<meta name="robots" content="noindex">
-<title>The new era of protein folding: Fable 5.2 beats all automated approaches in the pre-AlphaFold era · Dream-Protein-Bench</title>
+<title>The new era of protein folding: Fable 5.2 beats all automated approaches in the pre-AlphaFold era · Dream-Folding-Bench</title>
 <meta name="description" content="A benchmark that asks general-purpose coding agents to predict all-atom protein structures for CASP16 targets in three hours, without neural networks.">
-<link rel="stylesheet" href="css/style.css?v=25f2cddd">
+<link rel="stylesheet" href="css/style.css?v=50b88226">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Dream-Protein-Bench</a>
+    <a class="brand" href="#top">Dream-Folding-Bench</a>
     <nav>
       <a href="#demo">Demo</a>
       <span class="off" aria-disabled="true" title="The paper will be linked here">Paper</span>
@@ -31,7 +30,7 @@
   <div class="col">
     <h1>The new era of protein folding:<span class="claimline">Fable 5.2 beats all automated approaches in the pre-AlphaFold era</span></h1>
     <p class="sub">In ten hours on one CPU core and without a specialised protein folding model, a general-purpose coding agent outscores every automated
-      method of CASP12. Dream-Protein-Bench measures how well coding agents fold proteins on their own.</p>
+      method of CASP12. Dream-Folding-Bench measures how well coding agents fold proteins on their own.</p>
   </div>
 </div>
 <div class="byline">
@@ -75,7 +74,7 @@
         On 41 targets of CASP12 (2016), with the structure and sequence data of that year, Claude Fable 5.2 reaches a mean
         GDT_TS of 57.4 in ten hours on one CPU core, and 55.9 in three; Zhang-Server, the best automated server of that
         assessment, reached 54.9. The agent calls no specialised protein folding model: it searches the databases with standard
-        programs and builds its models with programs it writes during the session. To measure this systematically we built Dream-Protein-Bench and ran 12 frontier
+        programs and builds its models with programs it writes during the session. To measure this systematically we built Dream-Folding-Bench and ran 12 frontier
         coding agents on 53 targets of CASP16 (2024): Claude Fable 5.2 ranks first with 56.9 and
         Gemini 4 Neon second with 55.3; AlphaFold 3 scores 85.4. The CASP12 targets date from 2016, so
         knowledge leakage is possible (see <a href="#limitations">Limitations</a>).</p>
@@ -147,7 +146,7 @@
       annealing, side-chain packing. An open-book session leaves a median of 5 to 101 Python files of
       its own (664 to 4,835 lines), depending on the agent.</p>
     <details class="more" id="benchmark"><summary>More details of the benchmark</summary>
-    <div class="text"><p>Dream-Protein-Bench evaluates general-purpose coding agents on protein structure prediction. A shared evaluation framework
+    <div class="text"><p>Dream-Folding-Bench evaluates general-purpose coding agents on protein structure prediction. A shared evaluation framework
       enforces the resource limits, records the execution traces, and scores the predicted structures against experimentally determined
       references.</p></div>
 
@@ -410,11 +409,11 @@
 <section id="about">
   <div class="wrap">
     <h2 id="citation">Citation</h2>
-    <p>If you use Dream-Protein-Bench, please cite:</p>
+    <p>If you use Dream-Folding-Bench, please cite:</p>
     <div class="cite">
       <button class="linkbtn" id="cite-copy" type="button">Copy</button>
-<pre id="cite-text">@misc{dreamproteinbench2026,
-  title        = {Dream-Protein-Bench: Can Coding Agents Fold Proteins on Their Own?},
+<pre id="cite-text">@misc{dreamfoldingbench2026,
+  title        = {Dream-Folding-Bench: Can Coding Agents Fold Proteins on Their Own?},
   year         = {2026},
   howpublished = {\url{https://github.com/zhengkid/dream-fold-bench}},
   note         = {GitHub repository}
@@ -426,7 +425,7 @@
 </section>
 
 </main>
-<script src="data/data.js?v=2c9f7c6f"></script>
+<script src="data/data.js?v=2e107ea2"></script>
 <script src="data/replay_T1274.js?v=2b7e1afa"></script>
 <script src="data/replay_T1278.js?v=f49070e7"></script>
 <script src="js/charts.js?v=48e9558b"></script>

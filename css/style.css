@@ -1,4 +1,4 @@
-/* Dream-Protein-Bench project page. The look follows the paper's figures: one monospaced face for labels and numbers
+/* Dream-Folding-Bench project page. The look follows the paper's figures: one monospaced face for labels and numbers
    (JetBrains Mono), warm greys for everything that is not data, one colour per agent harness. Light theme only. */
 @font-face { font-family: Roboto; src: url("../fonts/Roboto-Light.ttf") format("truetype"); font-weight: 300; font-display: swap; }
 @font-face { font-family: Roboto; src: url("../fonts/Roboto-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
