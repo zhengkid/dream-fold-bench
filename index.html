@@ -30,7 +30,7 @@
 <div class="title">
   <div class="col">
     <h1>The new era of protein folding:<span class="claimline">Fable 5.2 beats all automated approaches in the pre-AlphaFold era</span></h1>
-    <p class="sub">In three hours on one CPU core and without a neural network, a general-purpose coding agent outscores every automated
+    <p class="sub">In ten hours on one CPU core and without a specialised protein folding model, a general-purpose coding agent outscores every automated
       method of CASP12. Dream-Protein-Bench measures how well coding agents fold proteins on their own.</p>
   </div>
 </div>
@@ -72,10 +72,11 @@
     <div class="tldr">
       <p><b>A general-purpose coding agent now predicts protein structures better than the best automated methods before AlphaFold.</b>
         On 41 targets of CASP12 (2016), with the structure and sequence data of that year, Claude Fable 5.2 reaches a mean
-        GDT_TS of 55.9 in three hours on one CPU core; Zhang-Server, the best automated server of that
-        assessment, reached 54.9. The agent uses no neural network: it searches the databases with standard
+        GDT_TS of 57.4 in ten hours on one CPU core, and 55.9 in three; Zhang-Server, the best automated server of that
+        assessment, reached 54.9. The agent calls no specialised protein folding model: it searches the databases with standard
         programs and builds its models with programs it writes during the session. To measure this systematically we built Dream-Protein-Bench and ran 12 frontier
-        coding agents on 53 targets of CASP16 (2024): the best scores 56.9, AlphaFold 3 85.4.</p>
+        coding agents on 53 targets of CASP16 (2024): Claude Fable 5.2 ranks first with 56.9 and
+        Gemini 4 Neon second with 55.3; AlphaFold 3 scores 85.4.</p>
     </div>
   </div>
 </div>
@@ -410,7 +411,7 @@
 </section>
 
 </main>
-<script src="data/data.js?v=47169aca"></script>
+<script src="data/data.js?v=b3a6b174"></script>
 <script src="data/replay_T1274.js?v=2b7e1afa"></script>
 <script src="data/replay_T1278.js?v=f49070e7"></script>
 <script src="js/charts.js?v=48e9558b"></script>
