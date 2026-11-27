@@ -210,12 +210,14 @@
       are the organisers' official GDT_TS of each group's first model on the same units; servers had three days per target.</p>
     <p class="lead-in"><b>Findings.</b></p>
     <ul class="points">
-      <li><b>A general coding agent beats the pre-AlphaFold state of the art.</b> With no folding tool, Claude Fable 5.2 outscores all
-        23 automated servers of CASP12 (55.9 against 54.9 for Zhang-Server), most
-        clearly on the hardest, free-modeling targets (33.8 against 31.7) (<a href="#c12-a">Figure 1a</a>).</li>
-      <li><b>It works at the level of human experts.</b> On the 37 harder units it scores 46.3, among
-        the best human groups (best: BAKER, 47.6), which had three weeks per target (<a href="#c12-b">Figure 1b</a>).</li>
-      <li><b>More time helps one agent more than the other.</b> With 10 hours, Claude Fable 5.2 reaches 57.4, and 48.2 on the units human groups predicted too, above the best human group (BAKER, 47.6); Gemini 4 Neon reaches 53.9 (<a href="#c12-c">Figure 1c</a>, <a href="#c12-d">d</a>).</li>
+      <li><b>A general coding agent beats the pre-AlphaFold state of the art.</b> With ten hours and no specialised protein folding
+        model, Claude Fable 5.2 scores 57.4; Zhang-Server, the best of the 23 automated servers, scored
+        54.9. The lead is largest on the hardest, free-modeling targets (35.7 against
+        31.7) (<a href="#c12-a">Figure 1a</a>).</li>
+      <li><b>Three hours are enough to match it.</b> In three hours the agent scores 55.9, and passes the best server
+        after 95 minutes (<a href="#c12-a">Figure 1a</a>, <a href="#c12-c">c</a>).</li>
+      <li><b>It works at the level of human experts.</b> On the 37 harder units it scores 48.2 with ten
+        hours and 46.3 with three; the best human group, BAKER, scored 47.6 (<a href="#c12-b">Figure 1b</a>, <a href="#c12-d">d</a>).</li>
     </ul>
     <figure class="fig3">
       <div class="legend keyrow" id="c12-legend"></div>
@@ -241,7 +243,7 @@
       </div>
       <figcaption class="cap"><b>Figure 1.</b> <b>a</b> Mean GDT_TS on all 56 units, beside the best of the 23 automated servers
         of CASP12. <b>b</b> The 37 harder units that human groups predicted too, with the four best human groups and the
-        two best servers; human groups had three weeks per target and could build on every server's models. <b>c</b> The score of
+        two best servers. <b>c</b> The score of
         the model each session holds at a given minute, on all 56 units; the dashed level is the best server. <b>d</b> The
         same on the 37 units of <b>b</b>; the dashed level is the best human group.</figcaption>
       <div class="figlinks"><button class="linkbtn" id="c12-toggle">Show the table</button></div>
@@ -411,7 +413,7 @@
 </section>
 
 </main>
-<script src="data/data.js?v=b3a6b174"></script>
+<script src="data/data.js?v=8992cb50"></script>
 <script src="data/replay_T1274.js?v=2b7e1afa"></script>
 <script src="data/replay_T1278.js?v=f49070e7"></script>
 <script src="js/charts.js?v=48e9558b"></script>
