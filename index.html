@@ -7,21 +7,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- kept out of search engines until the paper is released: remove this line then -->
 <meta name="robots" content="noindex">
-<title>Dream-Fold-Bench: Can Coding Agents Fold Proteins on Their Own?</title>
+<title>The new era of protein folding: Fable 5.2 beats all automated approaches in the pre-AlphaFold era · Dream-Protein-Bench</title>
 <meta name="description" content="A benchmark that asks general-purpose coding agents to predict all-atom protein structures for CASP16 targets in three hours, without neural networks.">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=25f2cddd">
 </head>
 <body>
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top">Dream-Fold-Bench</a>
+    <a class="brand" href="#top">Dream-Protein-Bench</a>
     <nav>
-      <a href="#leaderboard">Leaderboard</a>
-      <a href="#demo">Watch a session</a>
-      <a href="#benchmark">Benchmark</a>
-      <a href="#results">Results</a>
-      <a href="#targets">Targets</a>
+      <a href="#demo">Demo</a>
       <span class="off" aria-disabled="true" title="The paper will be linked here">Paper</span>
       <a href="https://github.com/zhengkid/dream-fold-bench" target="_blank" rel="noopener">Code ↗</a>
     </nav>
@@ -30,76 +26,343 @@
 
 <main id="top">
 
-<div class="hero">
-  <div class="wrap">
-    <p class="eyebrow">A benchmark of coding agents on protein structure prediction · CASP16 · no neural networks</p>
-    <h1>Dream-Fold-Bench</h1>
-    <p class="sub">Can Coding Agents Fold Proteins on Their Own?</p>
-    <p class="lead">Given an amino acid sequence, a general-purpose coding agent has three hours, one CPU core and a terminal to
-      produce an all-atom structure, using only general-purpose software and the code it writes during the session. It may
-      neither call nor train a neural network. We evaluate 12 frontier coding agents from Anthropic, Google and OpenAI
-      on 53 CASP16 targets, with sequence and structure databases (open-book) and without them (closed-book).</p>
-    <div class="buttons">
-      <span class="btn primary off" aria-disabled="true" title="The paper will be linked here">Paper (coming soon)</span>
-      <a class="btn" href="https://github.com/zhengkid/dream-fold-bench" target="_blank" rel="noopener">Code (GitHub) ↗</a>
-      <a class="btn" href="#leaderboard">Leaderboard</a>
-      <a class="btn" href="#demo">Watch an agent fold a protein</a>
-    </div>
 
-    <div class="tiles">
-      <div class="tile"><div class="value">56.9</div><div class="label"><span class="key" style="background:var(--claude)"></span>best open-book GDT_TS<br>Claude Fable 5.2</div></div>
-      <div class="tile"><div class="value">24.1</div><div class="label"><span class="key" style="background:var(--claude)"></span>best closed-book GDT_TS<br>Claude Fable 5.2</div></div>
-      <div class="tile"><div class="value">85.4</div><div class="label"><span class="key" style="background:var(--ink)"></span>AlphaFold 3 at CASP16<br>on 73 of the 75 evaluation units</div></div>
-      <div class="tile"><div class="value">12 × 53</div><div class="label">agents × CASP16 targets<br>75 evaluation units · 3 hours per target</div></div>
-    </div>
-
-    <div class="video" id="hero-video">
-      <video controls muted loop playsinline preload="metadata" poster="media/replay_T1274_poster.png">
-        <source src="media/replay_T1274.mp4" type="video/mp4">
-      </video>
-      <div class="cap">A real session, replayed: Claude Fable 5.2 folds CASP16 target T1274 (167 residues, no template in the PDB) in the
-        open-book setting. Left: the agent's own one-line description of each of its 182 shell commands. Right: every version of
-        <span class="mono">model.pdb</span> it wrote, over the experimental structure. The score rises from 22 to
-        46 GDT_TS over 9 versions. <a href="#demo">Interactive version below.</a></div>
+<div class="title">
+  <div class="col">
+    <h1>The new era of protein folding:<span class="claimline">Fable 5.2 beats all automated approaches in the pre-AlphaFold era</span></h1>
+    <p class="sub">In three hours on one CPU core and without a neural network, a general-purpose coding agent outscores every automated
+      method of CASP12. Dream-Protein-Bench measures how well coding agents fold proteins on their own.</p>
+  </div>
+</div>
+<div class="byline">
+  <div class="col">
+    <div><h3>Published</h3><p>Nov. 27, 2026</p></div>
+    <div class="links">
+      <span class="btn off" aria-disabled="true" title="The paper will be linked here">Paper (coming soon)</span>
+      <a class="btn" href="https://github.com/zhengkid/dream-fold-bench" target="_blank" rel="noopener">Code ↗</a>
     </div>
   </div>
 </div>
 
+<div class="hero">
+  <div class="wrap">
+    <div class="video" id="hero-video">
+      <video controls muted loop playsinline preload="metadata" poster="media/replay_T1274_poster.png">
+        <source src="media/replay_T1274.mp4?v=0760e5ec" type="video/mp4">
+      </video>
+      <div class="cap">A real session, replayed: Claude Fable 5.2 folds CASP16 target T1274 (167 residues, no template in the PDB) in the
+        open-book setting. Left: the agent's own one-line description of each of its 182 shell commands. Right: every version of
+        <span class="mono">model.pdb</span> it wrote, over the experimental structure. The score rises from 22 to
+        46 GDT_TS over 9 versions. <a href="#demo">Replay it yourself.</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="article-top">
+  <aside class="toc" aria-label="Contents">
+    <h3>Contents</h3>
+    <a href="#motivation">Motivation</a>
+    <a href="#method">Benchmark Approach</a>
+    <a href="#casp12">Comparison with pre-AlphaFold SoTA on CASP12</a>
+    <a href="#leaderboard">Benchmarking 12 frontier agents on CASP16</a>
+    <a href="#demo">Demo: how a coding agent folds a protein</a>
+    <a href="#about">Citation</a>
+  </aside>
+  <div class="col">
+    <div class="tldr">
+      <p><b>A general-purpose coding agent now predicts protein structures better than the best automated methods before AlphaFold.</b>
+        On 41 targets of CASP12 (2016), with the structure and sequence data of that year, Claude Fable 5.2 reaches a mean
+        GDT_TS of 55.9 in three hours on one CPU core; Zhang-Server, the best automated server of that
+        assessment, reached 54.9. The agent uses no neural network: it searches the databases with standard
+        programs and builds its models with programs it writes during the session. To measure this systematically we built Dream-Protein-Bench and ran 12 frontier
+        coding agents on 53 targets of CASP16 (2024): the best scores 56.9, AlphaFold 3 85.4.</p>
+    </div>
+  </div>
+</div>
+
+<section id="motivation">
+  <div class="wrap">
+    <h2>Motivation</h2>
+    <p>In recent weeks, frontier labs and independent researchers have reported that general-purpose models know a surprising amount
+      about proteins. They design protein structures and sequences with ordinary coding tools
+      (<a href="https://x.com/OpenAI/status/2125334383490105601" target="_blank" rel="noopener">OpenAI</a>), help determine the
+      structure of a protein assembly (<a href="https://x.com/AnthropicAI/status/2118073665296228863" target="_blank" rel="noopener">Anthropic</a>),
+      predict the next residue of little-studied protein sequences
+      (<a href="https://x.com/TuXinming/status/2122737418864664618" target="_blank" rel="noopener">Tu</a>), and
+      reconstruct the fold of ubiquitin from predicted contacts
+      (<a href="https://x.com/sokrypton/status/2122929243260608651" target="_blank" rel="noopener">Ovchinnikov</a>).</p>
+    <p>These results are promising. But we still do not know whether an agent can do the field's central task: turn a protein
+      sequence into its three-dimensional structure. Opinions differ: some are very optimistic, others still doubt what such models
+      can really do. So we measured it. We asked frontier coding agents to fold proteins on their own and scored their all-atom structures against
+      experimental ones. We gave them no protein folding tool, and they call no specialised model.</p>
+    <p><b>The answer is that we have underestimated them. With a terminal and the programs it writes itself, Fable 5.2 beats the
+      SoTA automated method of the pre-AlphaFold era.</b></p>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <h2>Benchmark Approach</h2>
+    <p>An agent gets one protein sequence, one CPU core and three hours in a sandbox, and must leave an all-atom
+      <span class="mono">model.pdb</span>. After the session we score that file against the experimental structure with three metrics: GDT_TS, TM-score and lDDT.</p>
+
+    <div class="flow">
+      <div class="box">
+        <h4>Agent folds protein</h4>
+        <div class="g">Inputs</div><ul><li>Protein sequence</li><li>Task instructions</li></ul>
+        <div class="g">Resources</div><ul><li>3 hours on 1 CPU core</li><li>Open-book / closed-book</li></ul>
+        <div class="g">Tools</div><ul><li>Terminal access</li><li>Renderer: 3D visual feedback</li><li>Evaluator: geometry + energy</li></ul>
+        <div class="g">Rules</div><ul><li>No auxiliary neural nets</li><li>No internet access</li></ul>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box center"><div>Agent produces</div><h4 style="margin:6px 0 0">model.pdb</h4></div>
+      <div class="arrow">→</div>
+      <div class="box center"><h4>Submission check</h4><div>model.pdb on disk<br>at session end?</div></div>
+      <div class="arrow">→</div>
+      <div>
+        <div class="box out center"><h4>Post-session scoring</h4><div>vs. experimental structure<br><b>GDT_TS</b> per evaluation unit</div></div>
+        <div class="box zero center">Missing or invalid: <b>GDT_TS = 0</b></div>
+      </div>
+    </div>
+
+    <p>We run every agent in two settings. <b>Closed-book:</b> the agent has only the sequence and what it knows.
+      <b>Open-book:</b> it may also search the Protein Data Bank, restricted to entries released before the target, and sequence
+      databases.</p>
+    <table class="rules">
+      <thead><tr><th class="l"></th><th>Closed-book</th><th>Open-book</th></tr></thead>
+      <tbody>
+        <tr><td class="l"><b>Terminal and Python</b> with NumPy, SciPy, Numba, Matplotlib</td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td class="l"><b>Renderer</b>: pictures of its own model, as <a href="#visual-feedback">3D visual feedback</a></td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td class="l"><b>Evaluator</b>: stereochemical checks and a force-field energy</td><td class="y">✓</td><td class="y">✓</td></tr>
+        <tr><td class="l"><b>Databases and search programs</b>: PDB and sequence databases; HH-suite, MMseqs2, HMMER</td><td class="n">✗</td><td class="y">✓</td></tr>
+        <tr class="sep"><td class="l"><b>Structure predictors</b>: AlphaFold, RoseTTAFold, ESMFold, protein language models, any neural-network library</td><td class="n">✗</td><td class="n">✗</td></tr>
+        <tr><td class="l"><b>Modelling software</b>: Rosetta, MODELLER, I-TASSER, Biopython, DSSP</td><td class="n">✗</td><td class="n">✗</td></tr>
+        <tr><td class="l"><b>Internet</b>, the experimental structure, any score</td><td class="n">✗</td><td class="n">✗</td></tr>
+      </tbody>
+    </table>
+    <p>Everything else the agent writes itself during the session: model building from alignments, coevolution analysis, folding by
+      annealing, side-chain packing. An open-book session leaves a median of 5 to 101 Python files of
+      its own (664 to 4,835 lines), depending on the agent.</p>
+    <details class="more" id="benchmark"><summary>More details of the benchmark</summary>
+    <div class="text"><p>Dream-Protein-Bench evaluates general-purpose coding agents on protein structure prediction. A shared evaluation framework
+      enforces the resource limits, records the execution traces, and scores the predicted structures against experimentally determined
+      references.</p></div>
+
+    <div class="grid3">
+      <div class="cell"><h4>Task and targets</h4>
+        <p>We identified 60 CASP16 (2024) targets that fit the task of predicting the tertiary structure of a single protein chain, and
+          excluded seven after a bio-safety review. The remaining 53 targets cover 75 official CASP16 evaluation units. The agent
+          must submit one chain with all heavy atoms for every residue of the sequence.</p></div>
+      <div class="cell"><h4>Tools and feedback</h4>
+        <p><b>3D visual feedback:</b> a renderer draws any candidate structure from several viewpoints as an image the agent can look at
+          (below). <b>Evaluator:</b> stereochemical checks and an energy computed with OpenMM (Amber ff14SB, GBn2 implicit solvent);
+          we also evaluate feedback from the Rosetta ref2015 energy function. <b>Open-book data:</b> the pre-release Protein Data
+          Bank and the sequence databases UniRef30, BFD and MGnify.</p></div>
+      <div class="cell"><h4>Post-session scoring</h4>
+        <p>After the session, the final <span class="mono">model.pdb</span> is compared with the experimental structure. Scoring follows the
+          official CASP16 evaluation units; separately assessed domains of one submission are scored independently. GDT_TS is the primary
+          metric; we also report TM-score and lDDT.</p></div>
+      <div class="cell"><h4>Session isolation</h4>
+        <p>Each session runs in its own sandbox. The agent can call the language model, but has no access to the internet or to
+          provider-side tools. Reference structures, scoring code, scores and the files of other sessions stay outside the sandbox.</p></div>
+      <div class="cell"><h4>Agents</h4>
+        <p>12 models in three agent harnesses: Claude Code (Claude Fable 5.2, Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5), Gemini CLI
+          (Gemini 4 Neon, Argon, Carbon, Hydrogen; Gemini 3.8 Flash, 3.1 Pro) and Codex CLI (GPT-6.2 Sol).</p></div>
+      <div class="cell"><h4>Runs and reporting</h4>
+        <p>A run is one session per target under one agent, database setting and evaluator: 53 sessions. The main results rest on
+          72 runs (3,816 sessions). A run's score is the mean over the 75 units; we report the mean across runs.
+          A session that ends because of a server or infrastructure error is rerun once.</p></div>
+    </div>
+
+    <div class="visual" id="visual-feedback">
+      <div class="vtext">
+        <h3>3D visual feedback: the agent can look at its structure</h3>
+        <p>A coding agent works in a terminal, but a protein structure is a three-dimensional object. Every session therefore has a
+          renderer: <span class="mono">view/view.py FILE.pdb</span> draws a candidate structure from the front, the top and the side,
+          together with its contact map, saves the picture as an image file the agent can open and look at, and prints a text summary.
+          The agent decides when to look. 10 of the 12 agents call the renderer in at least 85% of
+          their open-book sessions.</p>
+      </div>
+      <figure>
+        <img src="media/renderer_T1274.png?v=8e4a1594" alt="The renderer's picture of a model: the chain from the front, the top and the side, and its contact map" loading="lazy">
+        <figcaption>What the agent sees: a picture the renderer drew, and the agent opened, at minute 104 of the replayed T1274 session
+          (one domain of a candidate model; the file the session saved as <span class="mono">work/runs/m9_dom.png</span>). Blue is the first residue, red the last; helices are drawn thick, strands medium.</figcaption>
+      </figure>
+    </div>
+
+    <details><summary>The full task text every open-book session receives</summary>
+      <pre class="task" id="task-text"></pre>
+      <p class="note" id="task-closed"></p>
+    </details>
+    </details>
+  </div>
+</section>
+
+<section id="casp12">
+  <div class="wrap">
+    <h2>Comparison with SoTA approaches of the pre-AlphaFold era on CASP12</h2>
+    <p class="intro">We are first interested in how coding agents compare with the SoTA approaches of the pre-AlphaFold era. So we
+      evaluated Claude Fable 5.2 and Gemini 4 Neon, the most representative frontier agents at present, on CASP12 (2016), the last
+      assessment before AlphaFold.</p>
+    <p><b>Setting.</b> 41 targets with 56 evaluation units (all CASP12 tertiary-structure targets with
+      a public reference structure, after excluding viral proteins and toxins in a bio-safety review); open-book, one run of three hours and one of ten hours, each on one CPU core per target, with the Protein Data Bank as of each target's release date and the sequence databases uniprot20 (release 2016_02) and UniRef90 (release 2016_04). The baselines
+      are the organisers' official GDT_TS of each group's first model on the same units; servers had three days per target.</p>
+    <p class="lead-in"><b>Findings.</b></p>
+    <ul class="points">
+      <li><b>A general coding agent beats the pre-AlphaFold state of the art.</b> With no folding tool, Claude Fable 5.2 outscores all
+        23 automated servers of CASP12 (55.9 against 54.9 for Zhang-Server), most
+        clearly on the hardest, free-modeling targets (33.8 against 31.7) (<a href="#c12-a">Figure 1a</a>).</li>
+      <li><b>It works at the level of human experts.</b> On the 37 harder units it scores 46.3, among
+        the best human groups (best: BAKER, 47.6), which had three weeks per target (<a href="#c12-b">Figure 1b</a>).</li>
+      <li><b>More time helps one agent more than the other.</b> After 8 of 10 hours (runs still going; snapshot of 2026-11-27 14:55 UTC), Claude Fable 5.2 reaches 57.4, and 48.2 on the units human groups predicted too, above the best human group (BAKER, 47.6); Gemini 4 Neon reaches 53.9 (<a href="#c12-c">Figure 1c</a>, <a href="#c12-d">d</a>).</li>
+    </ul>
+    <figure class="fig3">
+      <div class="legend keyrow" id="c12-legend"></div>
+      <div class="panels3">
+        <div class="p" id="c12-a">
+          <h4><span>a</span>Above every automated server of 2016</h4>
+          <div class="chart" id="c12-chart"></div>
+          <div class="controls"><span class="seg" id="c12-class">
+            <button data-v="all" aria-pressed="true">All</button><button data-v="TBM" aria-pressed="false">TBM</button><button data-v="FM/TBM" aria-pressed="false">FM/TBM</button><button data-v="FM" aria-pressed="false">FM</button></span></div>
+        </div>
+        <div class="p" id="c12-b">
+          <h4><span>b</span>Among the best human expert groups</h4>
+          <div class="chart" id="c12-humans"></div>
+        </div>
+        <div class="p" id="c12-c">
+          <h4><span>c</span>Past the best server after 95 minutes</h4>
+          <div class="chart" id="c12-time"></div>
+        </div>
+        <div class="p" id="c12-d">
+          <h4><span>d</span>Past the best human group after 4.9 hours</h4>
+          <div class="chart" id="c12-time-both"></div>
+        </div>
+      </div>
+      <figcaption class="cap"><b>Figure 1.</b> <b>a</b> Mean GDT_TS on all 56 units, beside the best of the 23 automated servers
+        of CASP12. <b>b</b> The 37 harder units that human groups predicted too, with the four best human groups and the
+        two best servers; human groups had three weeks per target and could build on every server's models. <b>c</b> The score of
+        the model each session holds at a given minute, on all 56 units; the dashed level is the best server. <b>d</b> The
+        same on the 37 units of <b>b</b>; the dashed level is the best human group.</figcaption>
+      <div class="figlinks"><button class="linkbtn" id="c12-toggle">Show the table</button></div>
+      <div class="tablewrap hidden" id="c12-table"></div>
+    </figure>
+  </div>
+</section>
+
 <section id="leaderboard">
   <div class="wrap">
-    <p class="kicker">Leaderboard</p>
-    <h2>How well can frontier coding agents predict protein structures?</h2>
-    <p class="intro">Mean GDT_TS over 75 official evaluation units from 53 CASP16 targets, averaged over repeated runs.
-      Claude Fable 5.2 leads both settings, with 56.9 open-book and 24.1 closed-book. Access to databases is worth more
-      than thirty points to the leading agents, and the best agent still trails AlphaFold 3 by 28.5 points.</p>
-    <div class="card">
-      <div class="controls">
-        <div><span class="ctl-label">Setting</span><span class="seg" id="lb-setting">
-          <button data-v="open" aria-pressed="true">Open-book</button><button data-v="closed" aria-pressed="false">Closed-book</button><button data-v="average" aria-pressed="false">Average</button></span></div>
-        <div><span class="ctl-label">Metric</span><span class="seg" id="lb-metric">
-          <button data-v="gdt_ts" aria-pressed="true">GDT_TS</button><button data-v="tm" aria-pressed="false">TM-score</button><button data-v="lddt" aria-pressed="false">lDDT</button></span></div>
-        <button class="linkbtn" id="lb-toggle" style="margin-left:auto">Show the table</button>
+    <h2>Benchmarking 12 frontier agents from OpenAI, Anthropic and Google on CASP16</h2>
+    <p class="intro">We then measure systematically how well frontier coding agents fold proteins on their own, on CASP16 (2024),
+      the most recent assessment.</p>
+    <p><b>Setting.</b> 53 targets with 75 evaluation units (the single-chain tertiary-structure targets of CASP16,
+      after a bio-safety review); closed-book and open-book, three hours on one CPU core per target, 72 runs in all. The
+      reference is the official CASP16 score of neural-network predictors such as AlphaFold 3.</p>
+    <p class="lead-in"><b>Findings.</b></p>
+    <ul class="points">
+      <li><b>Agents can fold proteins, but stay far from neural predictors.</b> The best agent, Claude Fable 5.2, reaches
+        56.9 open-book; AlphaFold 3 reaches 85.4 (<a href="#c16-a">Figure 2a</a>; <a href="#more-leaderboard">full results</a>).</li>
+      <li><b>What an agent can look up matters most.</b> Without databases the best score is 24.1. With a close template
+        agents come near AlphaFold 3; without one they reach 37% of its score (<a href="#c16-b">Figure 2b</a>; <a href="#more-template">more details</a>).</li>
+      <li><b>The feedback cannot tell which model is right.</b> Its signals pick the better of two attempts in
+        46% to 63% of pairs, where 50% is chance; replacing the evaluator with one based on
+        Rosetta, or removing it, changes an agent's score by at most 1.5 points (<a href="#c16-c">Figure 2c</a>; <a href="#more-feedback">more details</a>).</li>
+    </ul>
+    <figure class="fig3 fig4" id="results">
+      <div class="panels3 even">
+        <div class="p" id="c16-a">
+          <h4><span>a</span>Claude Fable 5.2 leads the leaderboard in both settings</h4>
+          <div class="chart" id="lb-chart"></div>
+          <div class="controls">
+            <span class="seg" id="lb-setting">
+              <button data-v="open" aria-pressed="true">Open-book</button><button data-v="closed" aria-pressed="false">Closed-book</button><button data-v="average" aria-pressed="false">Average</button></span>
+            <span class="seg" id="lb-metric">
+              <button data-v="gdt_ts" aria-pressed="true">GDT_TS</button><button data-v="tm" aria-pressed="false">TM-score</button><button data-v="lddt" aria-pressed="false">lDDT</button></span>
+          </div>
+        </div>
+        <div class="p" id="c16-b">
+          <h4><span>b</span>With a close template, agents come near AlphaFold 3</h4>
+          <div class="chart" id="tpl-chart"></div>
+        </div>
+        <div class="p" id="c16-c">
+          <h4><span>c</span>No feedback signal reliably prefers the better model</h4>
+          <div class="chart" id="sig-chart"></div>
+        </div>
+        <div class="p key">
+          <div class="legend" id="lb-legend"></div>
+          <div class="legend" id="c16-legend"></div>
+          <div class="cap"><b>Figure 2.</b> <b>a</b>, mean over 75 evaluation units, ± standard deviation across runs. † Gemini 4 Hydrogen
+            frequently returned empty responses, possibly because of the agent harness; its scores may underestimate its ability.
+            <b>b</b>, mean GDT_TS, open-book, of the 10 agents shown, with targets grouped by their closest match in the PDB
+            released before the target: close (at least 60% of the sequence covered, at least 40% identity), remote (at least 60%
+            covered, below 40% identity), partial (10% to 60% covered), none. <b>c</b>, how often each signal of the evaluators
+            prefers the model with the higher GDT_TS.</div>
+        </div>
       </div>
-      <div class="chart" id="lb-chart"></div>
-      <div class="legend" id="lb-legend"></div>
-      <div class="tablewrap hidden" id="lb-table"></div>
-    </div>
+    </figure>
+
+    <details class="more" id="more-leaderboard"><summary>More details: full results of all 12 agents on GDT_TS, TM-score and lDDT</summary>
+      <div class="tablewrap" id="lb-table"></div>
     <p class="note">Mean ± standard deviation across completed runs; in the table, the superscript is the number of runs. Rows are ordered by
       open-book GDT_TS. Average: the mean of the closed-book and the open-book GDT_TS. All agents use the geometry + physics evaluator.
       AlphaFold 3, Yang-Server and ColabFold are neural-network predictors of CASP16, with their published scores on the units they
       submitted (AlphaFold 3: 73 of 75; ColabFold: 60).</p>
-    <p class="note">† Gemini 4 Hydrogen frequently returned empty responses, possibly because of the agent harness. Its scores may therefore
-      underestimate its ability to predict protein structures.</p>
+    </details>
+    <details class="more" id="more-template"><summary>More details: how targets are grouped by template availability</summary>
+      <div class="text">
+        <p>We group the 53 targets by their closest sequence match among the PDB chains released before the target (MMseqs2,
+          sensitivity 7.5, E-value ≤ 0.001; the best hit maximises identity × coverage). A target's score is the mean over its evaluation
+          units, and a type's score the unweighted mean over its targets.</p>
+      </div>
+      <div class="classes">
+        <div class="c"><b>Close template</b>A known structure covers at least 60% of the sequence with at least 40% identity.<span>4 targets</span></div>
+        <div class="c"><b>Remote template</b>A known structure covers at least 60% of the sequence with less than 40% identity.<span>11 targets</span></div>
+        <div class="c"><b>Partial template</b>The closest known structure covers 10% to 60% of the sequence, typically one domain of several.<span>16 targets</span></div>
+        <div class="c"><b>No template</b>No match is found, or the best match covers less than 10% of the sequence.<span>22 targets</span></div>
+      </div>
+    </details>
+    <details class="more" id="more-feedback"><summary>More details: does the choice of feedback affect prediction accuracy?</summary>
+      <div class="text">
+        <p>We also investigate the effect of the evaluator on prediction accuracy: 4 agents run with an evaluator based
+          on the Rosetta energy function in place of geometry + physics (in these runs the PyRosetta library is present and the agent
+          may import it), and 2 agents run with no evaluator at all (3 open-book runs each).</p>
+      </div>
+      <div class="tablewrap" id="fb-table"></div>
+      <p class="note" id="fb-note">Mean GDT_TS ± standard deviation across runs; superscript: number of runs. Difference: against geometry + physics.</p>
+      <div class="text">
+        <p><a href="#c16-c">Figure 2c</a> shows how often each signal prefers the better of two attempts by the same agent
+          (attempts at least 5 GDT_TS apart).</p>
+      </div>
+    </details>
+    <details class="more" id="more-sessions"><summary>More details: how each agent works in a session</summary>
+      <div class="text">
+        <p>For each agent in the open-book setting, we measure how many minutes it takes to write its first model, how many versions
+          of the model it writes, which search programs it uses, and how often it asks the evaluator and the renderer for feedback, as
+          shown below.</p>
+      </div>
+      <div class="tablewrap" id="beh-table"></div>
+      <p class="note">Open-book sessions. Minutes, versions and evaluator calls are medians over the sessions that deliver a model. For the
+        search programs and the renderer, the number is the percentage of sessions that use them at least once.</p>
+    </details>
+    <details class="more" id="targets"><summary>More details: the score of every agent on each of the 53 targets</summary>
+      <div class="text">
+        <p>We provide the mean GDT_TS of every agent on every target (the mean over the target's evaluation units and over the runs),
+          grouped by template availability, beside AlphaFold 3 at CASP16. Darker is higher.</p>
+      </div>
+      <div class="controls">
+        <span class="ctl-label">Setting</span><span class="seg" id="tg-setting">
+          <button data-v="open" aria-pressed="true">Open-book</button><button data-v="closed" aria-pressed="false">Closed-book</button></span>
+      </div>
+      <div class="tablewrap" id="tg-table"></div>
+      <p class="note">Hover over a target for its best match in the pre-release PDB.</p>
+    </details>
   </div>
 </section>
 
 <section id="demo">
   <div class="wrap">
-    <p class="kicker">Watch a session</p>
-    <h2>How an agent folds a protein</h2>
-    <p class="intro">Every session keeps a trace: each command, each version of the model, and the reports of its tools. Below, two open-book
-      sessions of Claude Fable 5.2 are replayed from their traces, one for a target without a template in the Protein Data Bank and one
-      with a remote homologue.</p>
+    <h2>Demo: How a coding agent folds a protein</h2>
+    <p class="intro">We provide a concrete demo of how a coding agent folds a protein: two open-book sessions of Claude Fable 5.2,
+      replayed from their traces, one for a target without a template in the Protein Data Bank and one with a remote homologue.</p>
     <div class="controls">
       <span class="seg" id="demo-target">
         <button data-v="T1274" aria-pressed="true">T1274 · no template</button><button data-v="T1278" aria-pressed="false">T1278 · remote template</button></span>
@@ -128,252 +391,30 @@
   </div>
 </section>
 
-<section id="benchmark">
-  <div class="wrap">
-    <p class="kicker">The benchmark</p>
-    <h2>One sequence, three hours, no neural network</h2>
-    <p class="intro">Dream-Fold-Bench evaluates general-purpose coding agents on protein structure prediction. A shared evaluation framework
-      enforces the resource limits, records the execution traces, and scores the predicted structures against experimentally determined
-      references.</p>
-
-    <div class="flow">
-      <div class="box">
-        <h4>Agent folds protein</h4>
-        <div class="g">Inputs</div><ul><li>Protein sequence</li><li>Task instructions</li></ul>
-        <div class="g">Resources</div><ul><li>3 hours on 1 CPU core</li><li>Open-book / closed-book</li></ul>
-        <div class="g">Tools</div><ul><li>Terminal access</li><li>Renderer: 3D visual feedback</li><li>Evaluator: geometry + energy</li></ul>
-        <div class="g">Rules</div><ul><li>No auxiliary neural nets</li><li>No internet access</li></ul>
-      </div>
-      <div class="arrow">→</div>
-      <div class="box center"><div>Agent produces</div><h4 style="margin:6px 0 0">model.pdb</h4></div>
-      <div class="arrow">→</div>
-      <div class="box center"><h4>Submission check</h4><div>model.pdb on disk<br>at session end?</div></div>
-      <div class="arrow">→</div>
-      <div>
-        <div class="box out center"><h4>Post-session scoring</h4><div>vs. experimental structure<br><b>GDT_TS</b> per evaluation unit</div></div>
-        <div class="box zero center">Missing or invalid: <b>GDT_TS = 0</b></div>
-      </div>
-    </div>
-
-    <div class="twocol">
-      <div class="setting"><h4>Closed-book</h4><div class="tag">no database, no search program</div>
-        <p style="margin:8px 0 0">The agent has the sequence, its own knowledge of proteins, and what it can compute.</p></div>
-      <div class="setting"><h4>Open-book</h4><div class="tag">PDB + UniRef30, BFD, MGnify · HH-suite, MMseqs2, HMMER</div>
-        <p style="margin:8px 0 0">The agent can search the Protein Data Bank, restricted to entries released before the target's release date, and three sequence databases.</p></div>
-    </div>
-
-    <div class="toolbox">
-      <h3>What the agent can use, and what it cannot</h3>
-      <p>The agent is given general-purpose software, not folding software. No program in a session predicts or models a protein
-        structure: whatever does, the agent writes during the session.</p>
-      <div class="twocol">
-        <div class="have"><h4>Available to the agent</h4><ul>
-          <li><b>A terminal and Python</b> with NumPy, SciPy, Numba and Matplotlib</li>
-          <li><b>Search tools</b> (open-book only): HH-suite, MMseqs2 and HMMER over the pre-release PDB, UniRef30, BFD and MGnify</li>
-          <li><b>A renderer</b>: pictures of a candidate structure, as 3D visual feedback</li>
-          <li><b>An evaluator</b>: stereochemical checks and a force-field energy (OpenMM, which the agent may also import)</li>
-        </ul></div>
-        <div class="havenot"><h4>Not available</h4><ul>
-          <li><b>No structure predictor</b>: no AlphaFold, RoseTTAFold or ESMFold, no protein language model, and no neural-network library</li>
-          <li><b>No modelling suite</b>: no Rosetta, MODELLER or I-TASSER</li>
-          <li><b>No structural-biology toolkit</b>: no Biopython, no DSSP; agents write their own file parsers and geometry code</li>
-          <li><b>No internet</b></li>
-        </ul></div>
-      </div>
-      <p style="margin-top:14px">What an agent needs beyond this, it programs itself: model building from alignments, coevolution analysis, folding by
-        annealing, side-chain packing. An open-book session leaves a median of 5 to 101 Python files of
-        its own (664 to 4,835 lines), depending on the agent.</p>
-      <p class="note">In the ablation runs with the Rosetta evaluator, the PyRosetta library is present and the agent may import it; the main
-        results have none.</p>
-    </div>
-
-    <div class="grid3">
-      <div class="cell"><h4>Task and targets</h4>
-        <p>We identified 60 CASP16 (2024) targets that fit the task of predicting the tertiary structure of a single protein chain, and
-          excluded seven after a bio-safety review. The remaining 53 targets cover 75 official CASP16 evaluation units. The agent
-          must submit one chain with all heavy atoms for every residue of the sequence.</p></div>
-      <div class="cell"><h4>Tools and feedback</h4>
-        <p><b>3D visual feedback:</b> a renderer draws any candidate structure from several viewpoints as an image the agent can look at
-          (below). <b>Evaluator:</b> stereochemical checks and an energy computed with OpenMM (Amber ff14SB, GBn2 implicit solvent);
-          we also evaluate feedback from the Rosetta ref2015 energy function.</p></div>
-      <div class="cell"><h4>Post-session scoring</h4>
-        <p>After the session, the final <span class="mono">model.pdb</span> is compared with the experimental structure. Scoring follows the
-          official CASP16 evaluation units; separately assessed domains of one submission are scored independently. GDT_TS is the primary
-          metric; we also report TM-score and lDDT.</p></div>
-      <div class="cell"><h4>Session isolation</h4>
-        <p>Each session runs in its own sandbox. The agent can call the language model, but has no access to the internet or to
-          provider-side tools. Reference structures, scoring code, scores and the files of other sessions stay outside the sandbox.</p></div>
-      <div class="cell"><h4>Agents</h4>
-        <p>12 models in three agent harnesses: Claude Code (Claude Fable 5.2, Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5), Gemini CLI
-          (Gemini 4 Neon, Argon, Carbon, Hydrogen; Gemini 3.8 Flash, 3.1 Pro) and Codex CLI (GPT-6.2 Sol).</p></div>
-      <div class="cell"><h4>Runs and reporting</h4>
-        <p>A run is one session per target under one agent, database setting and evaluator: 53 sessions. The main results rest on
-          72 runs (3,816 sessions). A run's score is the mean over the 75 units; we report the mean across runs.
-          A session that ends because of a server or infrastructure error is rerun once.</p></div>
-    </div>
-
-    <div class="visual">
-      <div class="vtext">
-        <h3>3D visual feedback: the agent can look at its structure</h3>
-        <p>A coding agent works in a terminal, but a protein structure is a three-dimensional object. Every session therefore has a
-          renderer: <span class="mono">view/view.py FILE.pdb</span> draws a candidate structure from the front, the top and the side,
-          together with its contact map, saves the picture as an image file the agent can open and look at, and prints a text summary.
-          The agent decides when to look. 10 of the 12 agents call the renderer in at least 85% of
-          their open-book sessions.</p>
-      </div>
-      <figure>
-        <img src="media/renderer_T1274.png" alt="The renderer's picture of a model: the chain from the front, the top and the side, and its contact map" loading="lazy">
-        <figcaption>What the agent sees: a picture the renderer drew, and the agent opened, at minute 104 of the replayed T1274 session
-          (one domain of a candidate model; the file the session saved as <span class="mono">work/runs/m9_dom.png</span>). Blue is the first residue, red the last; helices are drawn thick, strands medium.</figcaption>
-      </figure>
-    </div>
-
-    <details><summary>The full task text every open-book session receives</summary>
-      <pre class="task" id="task-text"></pre>
-      <p class="note" id="task-closed"></p>
-    </details>
-  </div>
-</section>
-
-<section id="results">
-  <div class="wrap">
-    <p class="kicker">Results</p>
-    <h2>What the experiments show</h2>
-    <p class="intro">Beyond the leaderboard: the agents are template modellers, the score of a session rises early and then levels off, and
-      the feedback available during a session says little about which model is closer to the truth.</p>
-
-    <div class="finding">
-      <div class="text">
-        <h3>1 · Accuracy follows template availability</h3>
-        <p>We group the 53 targets by their closest sequence match among the PDB chains released before the target (MMseqs2,
-          sensitivity 7.5, E-value ≤ 0.001; the best hit maximises identity × coverage). A target's score is the mean over its evaluation
-          units, and a type's score the unweighted mean over its targets.</p>
-      </div>
-      <div class="classes">
-        <div class="c"><b>Close template</b>A known structure covers at least 60% of the sequence with at least 40% identity.<span>4 targets</span></div>
-        <div class="c"><b>Remote template</b>A known structure covers at least 60% of the sequence with less than 40% identity.<span>11 targets</span></div>
-        <div class="c"><b>Partial template</b>The closest known structure covers 10% to 60% of the sequence, typically one domain of several.<span>16 targets</span></div>
-        <div class="c"><b>No template</b>No match is found, or the best match covers less than 10% of the sequence.<span>22 targets</span></div>
-      </div>
-      <div class="card">
-        <div class="controls"><span class="ctl-label">Mean GDT_TS, open-book, by target type</span><button class="linkbtn" id="tpl-toggle" style="margin-left:auto">Show the table</button></div>
-        <div class="chart" id="tpl-chart"></div>
-        <div class="legend" id="tpl-legend"></div>
-        <div class="tablewrap hidden" id="tpl-table"></div>
-      </div>
-      <div class="text">
-        <p>The gap between AlphaFold 3 and the agents widens as template similarity decreases. AlphaFold 3 stays between 84.5 and
-          88.5 across the four types. The median of the 10 agents shown falls from 81.4 on targets with a close template to
-          65.0, 55.0 and 32.0: where the search finds no match, the agents reach
-          37% of AlphaFold 3's score.</p>
-      </div>
-    </div>
-
-    <div class="finding">
-      <div class="text">
-        <h3>2 · The score rises early, then levels off</h3>
-        <p>The curves track the score of the structure a session holds at each minute, zero before its first model. In both settings the
-          score rises quickly at first and then starts to plateau: the earlier proposals contribute most, and later attempts improve it
-          marginally. Gemini 4 Neon starts low and improves late in the session.</p>
-      </div>
-      <div class="card">
-        <div class="panels">
-          <div><h4>Closed-book</h4><div class="chart" id="time-closed"></div></div>
-          <div><h4>Open-book</h4><div class="chart" id="time-open"></div></div>
-        </div>
-        <div class="legend" id="time-legend"></div>
-        <div class="controls" style="margin:10px 0 0"><button class="linkbtn" id="time-toggle">Show the table</button></div>
-        <div class="tablewrap hidden" id="time-table"></div>
-      </div>
-      <p class="note">At each time point we score the latest structure saved in each session and average over evaluation units and runs.
-        Dashed lines: the earlier model of a pair from the same provider.</p>
-    </div>
-
-    <div class="finding">
-      <div class="text">
-        <h3>3 · The feedback cleans up a model; it does not tell which model is right</h3>
-        <p>4 agents were also run with an evaluator based on the Rosetta energy function in place of geometry + physics. Switching
-          changes the mean GDT_TS by at most 0.5 points closed-book and 1.5 points open-book, in both directions,
-          with no consistent advantage for either evaluator. Removing the evaluator altogether changes as little: in a control of
-          3 open-book runs each, Claude Fable 5.2 scores 56.6 ± 0.7 without an evaluator and 56.9 ± 0.2 with geometry + physics; Claude Sonnet 5.5 scores 53.4 ± 1.8 without an evaluator and 52.7 ± 1.7 with geometry + physics.</p>
-      </div>
-      <div class="card"><div class="tablewrap" id="fb-table"></div></div>
-      <p class="note" id="fb-note">Mean GDT_TS ± standard deviation across runs; superscript: number of runs. Difference: against geometry + physics.</p>
-      <div class="text" style="margin-top:8px">
-        <p>Why does the kind of feedback matter so little? For every signal an evaluator reports, we ask how often it prefers the better of
-          two models. Between two attempts by the same agent in the same setting whose scores differ by at least five GDT_TS points, the 8 signals pick
-          the model with the higher GDT_TS in 46% to 63% of pairs, where 50% is chance.</p>
-      </div>
-      <div class="card">
-        <div class="chart" id="sig-chart"></div>
-        <div class="legend" id="sig-legend"></div>
-      </div>
-      <p class="note">Filled: two attempts of the same agent in the same setting. Hollow: any two models of one target.</p>
-    </div>
-
-    <div class="finding">
-      <div class="text">
-        <h3>4 · What the sessions do</h3>
-        <p>No method was prescribed. In the open-book setting every agent arrives at the same one, the template-based modelling that the
-          field used before neural networks: search the archive and the sequence databases, align, build, relax, and check.</p>
-      </div>
-      <div class="card"><div class="tablewrap" id="beh-table"></div></div>
-      <p class="note">Open-book sessions of the main results. Pace and evaluator calls: medians over the sessions that deliver a model. Search and
-        viewer: the share of all sessions that invoke the program at least once. GDT_TS: the open-book score of the leaderboard.</p>
-    </div>
-  </div>
-</section>
-
-<section id="targets">
-  <div class="wrap">
-    <p class="kicker">Every target</p>
-    <h2>53 targets × 12 agents</h2>
-    <p class="intro">Mean GDT_TS of every agent on every target (the mean over the target's evaluation units and over the runs), grouped by
-      template availability, beside AlphaFold 3 at CASP16. Darker is higher.</p>
-    <div class="controls">
-      <span class="ctl-label">Setting</span><span class="seg" id="tg-setting">
-        <button data-v="open" aria-pressed="true">Open-book</button><button data-v="closed" aria-pressed="false">Closed-book</button></span>
-    </div>
-    <div class="card"><div class="tablewrap" id="tg-table"></div></div>
-    <p class="note">Hover over a target for its best match in the pre-release PDB.</p>
-  </div>
-</section>
-
 <section id="about">
   <div class="wrap">
-    <p class="kicker">Paper</p>
-    <h2>Dream-Fold-Bench: Can Coding Agents Fold Proteins on Their Own?</h2>
-    <p class="intro" style="max-width:820px">We introduce Dream-Fold-Bench, a benchmark that asks coding agents to predict all-atom structures
-      under fixed time budgets without using auxiliary neural networks. We evaluate 12 frontier coding agents from Google, OpenAI
-      and Anthropic on CASP16 targets, with access to sequence and structure databases in the open-book setting and without access to those
-      databases in the closed-book setting. The best agent, Claude Fable 5.2, achieves a mean GDT_TS of 56.9 in the open-book
-      setting and 24.1 in the closed-book setting. With database access, agents approach AlphaFold 3 on targets with close
-      structural templates, while their mean GDT_TS falls below half of AlphaFold 3's on targets for which template search finds no match.
-      The feedback from Rosetta and from a traditional force field barely outperforms random guessing when selecting the better of two
-      attempts by the same agent. Together, these results show that current coding agents perform best when close structural templates are
-      available, and that their feedback signals offer limited guidance for selecting among candidate structures.</p>
-    <div class="buttons"><span class="btn primary off" aria-disabled="true" title="The paper will be linked here">Paper (coming soon)</span>
-      <a class="btn" href="https://github.com/zhengkid/dream-fold-bench" target="_blank" rel="noopener">Code (GitHub) ↗</a></div>
-    <h3 id="citation">Citation</h3>
-    <p style="max-width:820px">If you use Dream-Fold-Bench, please cite:</p>
+    <h2 id="citation">Citation</h2>
+    <p>If you use Dream-Protein-Bench, please cite:</p>
     <div class="cite">
       <button class="linkbtn" id="cite-copy" type="button">Copy</button>
-<pre id="cite-text">@misc{dreamfoldbench2026,
-  title        = {Dream-Fold-Bench: Can Coding Agents Fold Proteins on Their Own?},
+<pre id="cite-text">@misc{dreamproteinbench2026,
+  title        = {Dream-Protein-Bench: Can Coding Agents Fold Proteins on Their Own?},
   year         = {2026},
   howpublished = {\url{https://github.com/zhengkid/dream-fold-bench}},
   note         = {GitHub repository}
 }</pre>
     </div>
+    <div class="buttons"><span class="btn primary off" aria-disabled="true" title="The paper will be linked here">Paper (coming soon)</span>
+      <a class="btn" href="https://github.com/zhengkid/dream-fold-bench" target="_blank" rel="noopener">Code (GitHub) ↗</a></div>
   </div>
 </section>
 
 </main>
-<script src="data/data.js"></script>
-<script src="data/replay_T1274.js"></script>
-<script src="data/replay_T1278.js"></script>
-<script src="js/charts.js"></script>
-<script src="js/replay.js"></script>
-<script src="js/app.js"></script>
+<script src="data/data.js?v=116e6e6c"></script>
+<script src="data/replay_T1274.js?v=2b7e1afa"></script>
+<script src="data/replay_T1278.js?v=f49070e7"></script>
+<script src="js/charts.js?v=48e9558b"></script>
+<script src="js/replay.js?v=87c96459"></script>
+<script src="js/app.js?v=7eabe4e6"></script>
 </body>
 </html>

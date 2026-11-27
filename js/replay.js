@@ -152,12 +152,12 @@
       tx = function (m) { return TL + (TW - TL - TR) * m / limit; };
       const ty = function (v) { return TT + (TH - TT - TB) * (1 - v / 100); };
       [0, 50, 100].forEach(function (v) {
-        svg("line", { x1: TL, x2: TW - TR, y1: ty(v), y2: ty(v), stroke: v ? "#E8E3D7" : "#D9D4C8", "stroke-width": 1 }, tsvg);
+        svg("line", { x1: TL, x2: TW - TR, y1: ty(v), y2: ty(v), stroke: v ? "#E9ECF0" : "#D9DDE4", "stroke-width": 1 }, tsvg);
         const t = svg("text", { x: TL - 7, y: ty(v) + 4, "text-anchor": "end" }, tsvg); t.textContent = String(v);
       });
       const yl = svg("text", { x: 0, y: 10 }, tsvg); yl.textContent = "GDT_TS of each version (computed after the session)";
       if (data.af3 !== null) {
-        svg("line", { x1: TL, x2: TW - TR, y1: ty(data.af3), y2: ty(data.af3), stroke: "#2D2A23", "stroke-width": 1.2, "stroke-dasharray": "5 4" }, tsvg);
+        svg("line", { x1: TL, x2: TW - TR, y1: ty(data.af3), y2: ty(data.af3), stroke: "#000000", "stroke-width": 1.2, "stroke-dasharray": "5 4" }, tsvg);
         const t = svg("text", { x: TW - TR, y: ty(data.af3) + (data.af3 > 90 ? 14 : -5), "text-anchor": "end" }, tsvg); t.textContent = "AlphaFold 3 at CASP16: " + Math.round(data.af3);
         if (tx(end) + 110 > TW - TR - 175) { t.setAttribute("x", TL + 8); t.setAttribute("text-anchor", "start"); }      // no room at the right: the name goes to the left end
       }
@@ -167,7 +167,7 @@
       d += "H" + tx(end);
       const clip = svg("clipPath", { id: "rev-" + data.target }, svg("defs", {}, tsvg));
       revealed = svg("rect", { x: 0, y: 0, width: 0, height: TH }, clip);
-      svg("path", { d: d, fill: "none", stroke: "#D9D4C8", "stroke-width": 1.5 }, tsvg);
+      svg("path", { d: d, fill: "none", stroke: "#D9DDE4", "stroke-width": 1.5 }, tsvg);
       const g = svg("g", { "clip-path": "url(#rev-" + data.target + ")" }, tsvg);
       svg("path", { d: d, fill: "none", stroke: "#B5613C", "stroke-width": 2, "stroke-linejoin": "round" }, g);
       data.versions.forEach(function (v) { svg("circle", { cx: tx(v.minute), cy: ty(v.gdt_ts), r: 4, fill: "#B5613C", stroke: "#fff", "stroke-width": 2 }, g); });
@@ -175,11 +175,11 @@
       data.steps.forEach(function (s) { svg("rect", { x: tx(s.minute) - 1, y: y0, width: 2, height: 10, fill: data.kindColour[s.kind], opacity: 0.85 }, tsvg); });
       for (let m = 0; m <= limit; m += 30) { const t = svg("text", { x: tx(m), y: TH - 12, "text-anchor": "middle" }, tsvg); t.textContent = String(m); }
       const xl = svg("text", { x: tx(limit / 2), y: TH, "text-anchor": "middle" }, tsvg); xl.textContent = "Minutes into the session (limit: " + limit + ")";
-      svg("line", { x1: tx(end), x2: tx(end), y1: TT, y2: y0 + 10, stroke: "#6B655A", "stroke-width": 1 }, tsvg);
+      svg("line", { x1: tx(end), x2: tx(end), y1: TT, y2: y0 + 10, stroke: "#6B7385", "stroke-width": 1 }, tsvg);
       const last = data.versions[data.versions.length - 1].gdt_ts, ey = last > 55 ? ty(last) + 18 : ty(last) - 22;
       const et = svg("text", { x: tx(end) + 6, y: ey }, tsvg); et.textContent = "the agent ends";
       const et2 = svg("text", { x: tx(end) + 6, y: ey + 13 }, tsvg); et2.textContent = "its session";
-      head = svg("line", { x1: tx(0), x2: tx(0), y1: TT - 4, y2: y0 + 12, stroke: "#2D2A23", "stroke-width": 1.5 }, tsvg);
+      head = svg("line", { x1: tx(0), x2: tx(0), y1: TT - 4, y2: y0 + 12, stroke: "#000000", "stroke-width": 1.5 }, tsvg);
       const seek = function (e) {
         const b = tsvg.getBoundingClientRect(), m = ((e.clientX - b.left) / b.width * TW - TL) / (TW - TL - TR) * limit;
         state.seconds = Math.max(0, Math.min(end, m)) / rate;
