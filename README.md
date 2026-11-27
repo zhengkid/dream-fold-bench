@@ -1,8 +1,8 @@
-# Dream-Fold-Bench
+# Dream-Folding-Bench
 
 **Can Coding Agents Fold Proteins on Their Own?**
 
-Dream-Fold-Bench is a benchmark that asks general-purpose coding agents to predict the three-dimensional structure of a protein from its amino acid sequence. An agent has a fixed time budget, a terminal, and the code it writes during the session. It may not call or train an auxiliary neural network.
+Dream-Folding-Bench is a benchmark that asks general-purpose coding agents to predict the three-dimensional structure of a protein from its amino acid sequence. An agent has a fixed time budget, a terminal, and the code it writes during the session. It may not call or train an auxiliary neural network.
 
 > **Status:** the code will be released soon. See the [release plan](#release-plan) below.
 
@@ -42,11 +42,11 @@ This list will be updated as items are released.
 
 ## Citation
 
-If you use Dream-Fold-Bench, please cite this repository:
+If you use Dream-Folding-Bench, please cite this repository:
 
 ```bibtex
-@misc{dreamfoldbench2026,
-  title        = {Dream-Fold-Bench: Can Coding Agents Fold Proteins on Their Own?},
+@misc{dreamfoldingbench2026,
+  title        = {Dream-Folding-Bench: Can Coding Agents Fold Proteins on Their Own?},
   year         = {2026},
   howpublished = {\url{https://github.com/zhengkid/dream-fold-bench}},
   note         = {GitHub repository}
