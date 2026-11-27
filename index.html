@@ -65,6 +65,7 @@
     <a href="#method">Benchmark Approach</a>
     <a href="#casp12">Comparison with pre-AlphaFold SoTA on CASP12</a>
     <a href="#leaderboard">Benchmarking 12 frontier agents on CASP16</a>
+    <a href="#limitations">Limitations</a>
     <a href="#demo">Demo: how a coding agent folds a protein</a>
     <a href="#about">Citation</a>
   </aside>
@@ -361,6 +362,17 @@
   </div>
 </section>
 
+<section id="limitations">
+  <div class="wrap">
+    <h2>Limitations</h2>
+    <p>Although we carefully cut the structure and sequence databases off in time to mimic the state of each assessment (the
+      Protein Data Bank as of each target's release date and, for CASP12, the sequence databases of early 2016), we cannot tell
+      whether Claude Fable 5.2 has already seen these proteins and their structures during training: as
+      <a href="https://xinmingtu.cn/blog/2026/claude-opus-5-5-protein-sequences/" target="_blank" rel="noopener">Tu</a> shows, the
+      latest Claude models were trained on protein sequences at scale.</p>
+  </div>
+</section>
+
 <section id="demo">
   <div class="wrap">
     <h2>Demo: How a coding agent folds a protein</h2>
@@ -413,7 +425,7 @@
 </section>
 
 </main>
-<script src="data/data.js?v=8992cb50"></script>
+<script src="data/data.js?v=a3b76b91"></script>
 <script src="data/replay_T1274.js?v=2b7e1afa"></script>
 <script src="data/replay_T1278.js?v=f49070e7"></script>
 <script src="js/charts.js?v=48e9558b"></script>
